@@ -14,19 +14,11 @@ class Handler implements URLHandler {
         } else if (url.getPath().equals("/increment")) {
             num += 1;
             return String.format("Number incremented!");
-        } else if (url.getPath().equals("/search")) {
-
-            String arraylist = arrList.toString();
-            for(String arrayList ){
-
-            }
-            return arraylist;
-            
 
         } else {
 
             System.out.println("Path: " + url.getPath());
-            if (url.getPath().contains("/add")) {
+            if (url.getPath().contains("/add-message")) {
                 String[] parameters = url.getQuery().split("=");
                 if (parameters[0].equals("s")) {
                     //num += Integer.parseInt(parameters[1]);
@@ -34,17 +26,19 @@ class Handler implements URLHandler {
                    // return String.format("Number increased by %s! It's now %d", parameters[1], num);
                     arrList.add(parameters[1]);
                     // else if url is search
-                    return String.format("String %s is added to the server", parameters[1]);
-
+                    String oneLine = "";
+                    for (String word : arrList){
+                        oneLine = oneLine + word + "\n";
+                    }
+                    return oneLine;
                 }
-            
             }
             return "404 Not Found!";
         }
     }
 }
 
-class SearchEngine {
+class StringServer {
     public static void main(String[] args) throws IOException {
         if(args.length == 0){
             System.out.println("Missing port number! Try any number between 1024 to 49151");
